@@ -1,0 +1,15 @@
+{
+  "posts": [
+    {
+      "email": "deedee@gmail.com",
+      "password": "deedee12",
+      "id": 1
+    }
+  ],
+  "diary": [
+    {
+      "desc": "<p>tomorrow isnt p</p>",
+      "id": 3
+    }
+  ]
+}

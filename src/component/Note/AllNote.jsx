@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   deleteDiaryAction,
-  getDiariesAction, 
+  getDiariesAction,
   updateDiaryAction,
 } from "../../redux/actions";
 
@@ -27,7 +27,7 @@ const AllNote = () => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(null);
   const [editNote, setEditNote] = useState("");
-  const { createDiary, getDiaries} = useSelector((state) => state);
+  const { createDiary, getDiaries } = useSelector((state) => state);
   const { diaries } = getDiaries;
 
   console.log(createDiary, "createDiary");
@@ -50,16 +50,33 @@ const AllNote = () => {
       console.log(editNote, "updated");
     }
   };
-  // const realValue = () => {
-  //   dispatch(getDiaryAction());
-  // };
+
+  let date = new Date();
+
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  // Check whether AM or PM
+  let newformat = hours >= 12 ? "PM" : "AM";
+
+  // Find current hour in AM-PM Format
+  hours = hours % 12;
+
+  // To display "0" as "12"
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  let answer = hours + ":" + minutes + " " + newformat;
+  console.log(hours + ":" + minutes + " " + newformat);
+
+  const time = new Date();
+  const showTime = ` ${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`;
+
+  const dateDay = [time.getDate(), time.getDay(), time.getFullYear()].join("/");
   useEffect(() => {
     dispatch(getDiariesAction());
   }, [dispatch]);
-
   return (
     <div>
-   
       <ul
         style={{
           display: "grid",
@@ -71,7 +88,8 @@ const AllNote = () => {
           return (
             <div key={note.id}>
               <Paste>
-                <h6>{Date()} </h6>
+                <h3>{showTime} </h3>
+                <h6> {dateDay} </h6>
                 {note.id === edit ? (
                   <div>
                     <input

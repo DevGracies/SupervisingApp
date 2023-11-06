@@ -98,7 +98,6 @@ const NewNote = () => {
       <Top>
         <Note onClick={() => setNote(!note)}>
           Write <FaPlus />
-          Dashboard
         </Note>
         {note && (
           <Overall>
@@ -156,7 +155,7 @@ const NewNote = () => {
             </Fold>
           </Overall>
         )}
-        <h2>{/* {user.email} */}</h2>
+        <h2>{user.email.slice(0, 6)}</h2>
       </Top>
     </div>
   );

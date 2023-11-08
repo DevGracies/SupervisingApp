@@ -57,12 +57,13 @@ const AllNote = () => {
   console.log(edit, "edit");
   const deleteHandler = (id) => {
     dispatch(deleteDiaryAction(id));
+    //i am suppose to call a function here to make single id disappear 
   };
   const updateHandler = (e) => {
     e.preventDefault();
     if (editNote.trim() !== "") {
       dispatch(updateDiaryAction(edit, editNote));
-      // setEdit(null);
+      setEdit(null);
       setEditNote("");
       console.log(editNote, "updated");
     }
@@ -88,9 +89,11 @@ const AllNote = () => {
   const showTime = ` ${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`;
 
   const dateDay = [time.getDate(), time.getDay(), time.getFullYear()].join("/");
-  useEffect(() => {
+  useEffect((id) => {
     dispatch(getDiariesAction());
-  }, [dispatch]);
+    dispatch(updateDiaryAction(edit, editNote));
+    dispatch(deleteDiaryAction(id));
+  }, [dispatch, edit, editNote]);
   return (
     <div>
       <ul

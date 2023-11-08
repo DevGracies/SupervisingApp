@@ -8,21 +8,22 @@ function UserDashboard() {
     <div className={style.dashboard}>
       <div
         style={{
-          width: " max-content",
-          display: "flex",
           justifyContent: "center",
-          justifyItems: "center",
+          display: " flex",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
         }}
       >
         <div
           style={{
             display: "flex",
             justifyContent: "space-around",
-            alignItems: "center",
             margin: "10px",
             backgroundColor: "white",
             borderRadius: "10px",
             width: "max-content",
+            padding: "5px",
           }}
         >
           <NewNote />

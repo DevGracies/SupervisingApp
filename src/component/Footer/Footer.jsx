@@ -7,7 +7,7 @@ const Copy = styled.section`
   margin: 0;
   padding: 0;
   text-align: center;
-  height: 100px;
+  height: 90px;
 `;
 const Footer = () => {
   return (

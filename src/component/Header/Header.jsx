@@ -9,6 +9,8 @@ const Top = styled.section`
   justify-content: space-between;
   align-items: center;
   background-color: #ff5102;
+  height: 100px;
+  padding: 4px;
 `;
 
 function Header() {

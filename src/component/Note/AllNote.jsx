@@ -13,6 +13,7 @@ const Paste = styled.div`
   border-radius: 10px;
   height: max-content;
   width: 300px;
+  max-height: 300px;
   margin: 10px;
   padding: 5px;
 `;
@@ -21,6 +22,24 @@ const Button = styled.button`
   background-color: #ff5102;
   color: #fff;
   border-radius: 5px;
+  cursor: pointer;
+`;
+const Overall = styled.div`
+  display: none;
+  width: 100%;
+  top: 0;
+  buttom: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  backdrop-filter: blur(10px);
+`;
+const H2 = styled.h3`
+  position: relative;
+  display: inline-block;
 `;
 
 const AllNote = () => {
@@ -29,9 +48,7 @@ const AllNote = () => {
   const [editNote, setEditNote] = useState("");
   const { createDiary, getDiaries } = useSelector((state) => state);
   const { diaries } = getDiaries;
-
   console.log(createDiary, "createDiary");
-
   const editHandler = (id, currNote) => {
     console.log(currNote, "current note");
     setEdit(id);
@@ -45,12 +62,11 @@ const AllNote = () => {
     e.preventDefault();
     if (editNote.trim() !== "") {
       dispatch(updateDiaryAction(edit, editNote));
-      setEdit(null);
+      // setEdit(null);
       setEditNote("");
       console.log(editNote, "updated");
     }
   };
-
   let date = new Date();
 
   let hours = date.getHours();
@@ -80,15 +96,18 @@ const AllNote = () => {
       <ul
         style={{
           display: "grid",
-          gridTemplateColumns: " auto auto auto ",
+          gridTemplateColumns: " auto auto ",
           alignItems: "center",
         }}
       >
         {diaries.map((note) => {
           return (
-            <div key={note.id}>
+            <div
+              key={note.id}
+              // onClick={() => (Overall.style.visibility = "visible")}
+            >
               <Paste>
-                <h3>{showTime} </h3>
+                <h3>{answer} </h3>
                 <h6> {dateDay} </h6>
                 {note.id === edit ? (
                   <div>
@@ -103,7 +122,16 @@ const AllNote = () => {
                   </div>
                 ) : (
                   <div>
-                    <p dangerouslySetInnerHTML={{ __html: note.desc }} />
+                    <h4
+                      dangerouslySetInnerHTML={{
+                        __html: note.desc.slice(0, 20),
+                      }}
+                    />
+                    {/* <Overall
+                      dangerouslySetInnerHTML={{
+                        __html: note.desc,
+                      }}
+                    /> */}
                     <div
                       style={{
                         display: "flex",

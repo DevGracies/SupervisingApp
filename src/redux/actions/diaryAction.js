@@ -102,13 +102,13 @@ export const getDiariesAction = () => async (dispatch, state) => {
 };
 
 export const updateDiaryAction = (id, newValue) => async (dispatch, state) => {
-  // const diary = {};
-  // const config = {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     authorization: `Bearer ${diary.token}`,
-  //   },
-  // };
+  const diary = {};
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${diary.token}`,
+    },
+  };
   dispatch({
     type: UPDATE_DIARY_REQUEST,
   });
@@ -117,10 +117,10 @@ export const updateDiaryAction = (id, newValue) => async (dispatch, state) => {
       `http://localhost:3004/diary/${id}`
       // config
     );
+    console.log(data, newValue);
     dispatch({
       type: UPDATE_DIARY_SUCCESS,
-      payload: data,
-      newValue,
+      payload: { data, newValue },
     });
   } catch (error) {
     dispatch({

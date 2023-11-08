@@ -13,7 +13,6 @@ const Top = styled.section`
   width: 390px;
   display: flex;
   border-radius: 20px;
-  justify-content: space-between;
   color: #ff5102;
   padding: 20px;
 `;
@@ -96,6 +95,7 @@ const NewNote = () => {
       }}
     >
       <Top>
+        <h2>{user.email.slice(0, 6)}</h2>
         <Note onClick={() => setNote(!note)}>
           Write <FaPlus />
         </Note>
@@ -155,7 +155,6 @@ const NewNote = () => {
             </Fold>
           </Overall>
         )}
-        <h2>{user.email.slice(0, 6)}</h2>
       </Top>
     </div>
   );

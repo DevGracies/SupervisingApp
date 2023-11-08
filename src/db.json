@@ -4,16 +4,21 @@
       "email": "deedee@gmail.com",
       "password": "deedee12",
       "id": 1
+    },
+    {
+      "email": "youngdeveloperstraining@gmail.com",
+      "password": "Gra345",
+      "id": 2
     }
   ],
   "diary": [
     {
-      "desc": "<p>Well good</p>",
-      "id": 4
-    },
-    {
       "desc": "<p>It's nice to meet you too</p>",
       "id": 5
+    },
+    {
+      "desc": "<p>b,jbmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>",
+      "id": 6
     }
   ]
 }

@@ -6,7 +6,7 @@ import {
   getDiariesAction,
   updateDiaryAction,
 } from "../../redux/actions";
-
+import styles from "./All.modules.css";
 const Paste = styled.div`
   background-color: #fff;
   color: #ff5102;
@@ -57,7 +57,7 @@ const AllNote = () => {
   console.log(edit, "edit");
   const deleteHandler = (id) => {
     dispatch(deleteDiaryAction(id));
-    //i am suppose to call a function here to make single id disappear 
+    //i am suppose to call a function here to make single id disappear
   };
   const updateHandler = (e) => {
     e.preventDefault();
@@ -89,11 +89,14 @@ const AllNote = () => {
   const showTime = ` ${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`;
 
   const dateDay = [time.getDate(), time.getDay(), time.getFullYear()].join("/");
-  useEffect((id) => {
-    dispatch(getDiariesAction());
-    dispatch(updateDiaryAction(edit, editNote));
-    dispatch(deleteDiaryAction(id));
-  }, [dispatch, edit, editNote]);
+  useEffect(
+    (id) => {
+      dispatch(getDiariesAction());
+      dispatch(updateDiaryAction(edit, editNote));
+      dispatch(deleteDiaryAction(id));
+    },
+    [dispatch, edit, editNote]
+  );
   return (
     <div>
       <ul
@@ -126,6 +129,8 @@ const AllNote = () => {
                 ) : (
                   <div>
                     <h4
+                      className={styles.four}
+                      title={note.desc}
                       dangerouslySetInnerHTML={{
                         __html: note.desc.slice(0, 20),
                       }}

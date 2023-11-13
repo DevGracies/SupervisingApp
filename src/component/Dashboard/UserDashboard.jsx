@@ -34,7 +34,7 @@ function UserDashboard() {
           </h1>
         </div>
       </div>
-      <div>
+      <div style={{ height: " max-content", minHeight: "500px" }}>
         <AllNote />
       </div>
     </div>

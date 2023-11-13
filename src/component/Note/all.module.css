@@ -1,0 +1,30 @@
+#paste {
+background-color: #fff;
+color: #ff5102;
+border-radius: 30px;
+height: max-content;
+width: 700px;
+max-height: 300px;
+margin-bottom: 20px;
+padding: 20px;
+display: flex;
+justify-content: space-between;
+}
+.button{
+    border: none;
+    background-color: #ff5102;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.all{
+    display: flex;
+    justify-content: center;
+}
+#mary{
+    padding-right: 30px;
+    border: 2px; 
+    border-right-style: solid;
+    border-color: #ff5102;
+}

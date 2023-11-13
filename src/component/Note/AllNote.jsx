@@ -1,46 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import {
   deleteDiaryAction,
   getDiariesAction,
   updateDiaryAction,
 } from "../../redux/actions";
-import styles from "./All.modules.css";
-const Paste = styled.div`
-  background-color: #fff;
-  color: #ff5102;
-  border-radius: 10px;
-  height: max-content;
-  width: 300px;
-  max-height: 300px;
-  margin: 10px;
-  padding: 5px;
-`;
-const Button = styled.button`
-  border: none;
-  background-color: #ff5102;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-`;
-const Overall = styled.div`
-  display: none;
-  width: 100%;
-  top: 0;
-  buttom: 0;
-  left: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  backdrop-filter: blur(10px);
-`;
-const H2 = styled.h3`
-  position: relative;
-  display: inline-block;
-`;
+import styles from "./all.module.css";
 
 const AllNote = () => {
   const dispatch = useDispatch();
@@ -98,62 +63,69 @@ const AllNote = () => {
     [dispatch, edit, editNote]
   );
   return (
-    <div>
-      <ul
-        style={{
-          display: "grid",
-          gridTemplateColumns: " auto auto ",
-          alignItems: "center",
-        }}
-      >
+    <div className={styles.all}>
+      <ul>
         {diaries.map((note) => {
           return (
             <div
               key={note.id}
               // onClick={() => (Overall.style.visibility = "visible")}
             >
-              <Paste>
-                <h3>{answer} </h3>
-                <h6> {dateDay} </h6>
-                {note.id === edit ? (
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Edit note"
-                      value={editNote}
-                      style={{ outline: "none", border: "none" }}
-                      onChange={(e) => setEditNote(e.target.value)}
-                    />
-                    <Button onClick={updateHandler}>Update</Button>
-                  </div>
-                ) : (
-                  <div>
-                    <h4
-                      dangerouslySetInnerHTML={{
-                        __html: note.desc.slice(0, 20),
-                      }}
-                    />
-                    {/* <Overall
-                      dangerouslySetInnerHTML={{
-                        __html: note.desc,
-                      }}
-                    /> */}
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Button onClick={() => editHandler(note.id, note.desc)}>
-                        Edit Diary
-                      </Button>
-                      <Button onClick={() => deleteHandler(note.id)}>
-                        Delete Diary
-                      </Button>
+              <div id={styles.paste}>
+                <div id={styles.mary}>
+                  <h3>{answer} </h3>
+                  <h6> {dateDay} </h6>
+                </div>
+
+                <div>
+                  {note.id === edit ? (
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Edit note"
+                        value={editNote}
+                        style={{ outline: "none", border: "none" }}
+                        onChange={(e) => setEditNote(e.target.value)}
+                      />
+                      <button className={styles.button} onClick={updateHandler}>
+                        Update
+                      </button>
                     </div>
-                  </div>
-                )}
-              </Paste>
+                  ) : (
+                    <div>
+                      <h4
+                        dangerouslySetInnerHTML={{
+                          __html: note.desc.slice(0, 20),
+                        }}
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          marginBottom: "10px",
+                          gap: "20px",
+                        }}
+                      >
+                        <button
+                          className={styles.button}
+                          onClick={() => editHandler(note.id, note.desc)}
+                        >
+                          Edit Diary
+                        </button>
+                        <button
+                          className={styles.button}
+                          onClick={() => deleteHandler(note.id)}
+                        >
+                          Delete Diary
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <h2>readmore....</h2>
+                </div>
+              </div>
             </div>
           );
         })}

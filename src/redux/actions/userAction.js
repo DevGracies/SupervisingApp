@@ -11,6 +11,7 @@ import {
   GET_USERS_REQUEST,
   GET_USERS_SUCCESS,
   GET_USERS_ERROR,
+  DIARYENTRY,
 } from "../constants";
 
 import axios from "axios";
@@ -53,7 +54,6 @@ export const createUserAction = (posts) => async (dispatch, state) => {
     });
   }
 };
-
 export const getUserAction = (email, password) => async (dispatch, state) => {
   const user = {};
   const config = {
@@ -82,9 +82,7 @@ export const getUserAction = (email, password) => async (dispatch, state) => {
     });
   }
 };
-
-export const getUsersAction =
-  (email, password, id) => async (dispatch, state) => {
+export const getUsersAction = (email, password, id) => async (dispatch, state) => {
     const user = {};
     const config = {
       headers: {
@@ -137,3 +135,17 @@ export const deleteUserAction = (id) => async (dispatch) => {
     });
   }
 };
+
+export const userDaries = (userId, diaryEntry) => async (dispatch, state) => {
+try {
+  dispatch({
+    type: DIARYENTRY,
+    payload: {userId, diaryEntry}
+  })
+} catch (error) {
+  dispatch({
+    type: DIARYENTRY,
+  payload: error.message
+  })
+}
+}

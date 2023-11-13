@@ -129,8 +129,6 @@ const AllNote = () => {
                 ) : (
                   <div>
                     <h4
-                      className={styles.four}
-                      title={note.desc}
                       dangerouslySetInnerHTML={{
                         __html: note.desc.slice(0, 20),
                       }}

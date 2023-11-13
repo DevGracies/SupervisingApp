@@ -71,7 +71,7 @@ export const updateDiaryReducer = (
         ...state,
         diary: state.diary.map((note) =>
           note.id === action.payload.id
-            ? { ...note, value: action.payload.newValue }
+            ? { ...note, value: action.payload.newValue, }
             : note
         ),
       };

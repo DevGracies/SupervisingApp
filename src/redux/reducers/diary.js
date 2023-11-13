@@ -71,7 +71,7 @@ export const updateDiaryReducer = (
         ...state,
         diary: state.diary.map((note) =>
           note.id === action.payload.id
-            ? { ...note, value: action.payload.newValue, }
+            ? { ...note, value: action.payload.newValue }
             : note
         ),
       };
@@ -105,6 +105,8 @@ export const getDiaryReducer = (
         loading: true,
       };
     case GET_DIARY_SUCCESS:
+      const { desc, time } = action.payload;
+      console.log(desc, time);
       return {
         ...state,
         loading: false,

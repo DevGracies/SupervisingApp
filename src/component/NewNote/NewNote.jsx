@@ -60,7 +60,7 @@ const Overall = styled.div`
 
 const NewNote = () => {
   const [value, setValue] = useState("");
-  const [note, setNote] = useState(false);
+  const [note, setNote] = useState();
   const dispatch = useDispatch();
   const { getUser } = useSelector((state) => state);
   const { user } = getUser;

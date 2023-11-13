@@ -9,6 +9,11 @@
       "email": "youngdeveloperstraining@gmail.com",
       "password": "Gra345",
       "id": 2
+    },
+    {
+      "email": "degracies04@gmail.com",
+      "password": "deedee12",
+      "id": 3
     }
   ],
   "diary": [
@@ -21,8 +26,9 @@
       "id": 6
     },
     {
-      "desc": "<p>hgjghvghhhhhh</p>",
-      "id": 7
+      "desc": "<p>mmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>",
+      "time": "15:45: 55",
+      "id": 9
     }
   ]
 }

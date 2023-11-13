@@ -13,6 +13,7 @@ const AllNote = () => {
   const [editNote, setEditNote] = useState("");
   const { createDiary, getDiaries } = useSelector((state) => state);
   const { diaries } = getDiaries;
+  const { time } = createDiary;
   console.log(createDiary, "createDiary");
   const editHandler = (id, currNote) => {
     console.log(currNote, "current note");
@@ -50,17 +51,19 @@ const AllNote = () => {
   let answer = hours + ":" + minutes + " " + newformat;
   console.log(hours + ":" + minutes + " " + newformat);
 
-  const time = new Date();
-  const showTime = ` ${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`;
+  const timee = new Date();
+  const showTime = ` ${timee.getHours()} : ${timee.getMinutes()} : ${timee.getSeconds()}`;
 
-  const dateDay = [time.getDate(), time.getDay(), time.getFullYear()].join("/");
+  const dateDay = [timee.getDate(), timee.getDay(), timee.getFullYear()].join(
+    "/"
+  );
   useEffect(
     (id) => {
       dispatch(getDiariesAction());
       dispatch(updateDiaryAction(edit, editNote));
-      dispatch(deleteDiaryAction(id));
+      deleteDiaryAction(id);
     },
-    [dispatch, edit, editNote]
+    [dispatch, edit, editNote, createDiary]
   );
   return (
     <div className={styles.all}>
@@ -73,7 +76,7 @@ const AllNote = () => {
             >
               <div id={styles.paste}>
                 <div id={styles.mary}>
-                  <h3>{answer} </h3>
+                  <h3>{time} </h3>
                   <h6> {dateDay} </h6>
                 </div>
 

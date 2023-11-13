@@ -32,10 +32,16 @@ export const createDiaryAction = (value) => async (dispatch, state) => {
     dispatch({
       type: CREATE_DIARY_REQUEST,
     });
-
+    const time = new Date();
     console.log(value, "value from action");
+    const dateDay = [time.getDate(), time.getDay(), time.getFullYear()].join(
+      "/"
+    );
+    const dateTime = `${time.getHours()}:${time.getMinutes()}: ${time.getSeconds()}`;
     const { data } = await axios.post(backend_base_url, {
       desc: value,
+      time: dateTime,
+      date: dateDay,
     });
     console.log(data, "the data in the diary");
     dispatch({

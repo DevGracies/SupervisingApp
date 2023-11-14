@@ -105,8 +105,6 @@ export const getDiaryReducer = (
         loading: true,
       };
     case GET_DIARY_SUCCESS:
-      const { desc, time } = action.payload;
-      console.log(desc, time);
       return {
         ...state,
         loading: false,

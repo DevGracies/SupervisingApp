@@ -108,13 +108,13 @@ export const getDiariesAction = () => async (dispatch, state) => {
 };
 
 export const updateDiaryAction = (id, newValue) => async (dispatch, state) => {
-  const diary = {};
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${diary.token}`,
-    },
-  };
+  // const diary = {};
+  // const config = {
+  // headers: {
+  // "Content-Type": "application/json",
+  // authorization: `Bearer ${diary.token}`,
+  // },
+  // };
   dispatch({
     type: UPDATE_DIARY_REQUEST,
   });
@@ -143,7 +143,7 @@ export const deleteDiaryAction = (id) => async (dispatch, state) => {
   //     "Content-Type": "application/json",
   //     authorization: `Bearer ${diary.token}`,
   //   },
-  // };
+  // };klj
   dispatch({
     type: DELETE_DIARY_REQUEST,
   });

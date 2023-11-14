@@ -7,13 +7,27 @@ import {
 } from "../../redux/actions";
 import styles from "./all.module.css";
 
+import styled from "styled-components";
+
+const Overall = styled.div`
+  width: 100%;
+  top: 0;
+  buttom: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  backdrop-filter: blur(10px);
+`;
 const AllNote = () => {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState();
   const [edit, setEdit] = useState(null);
   const [editNote, setEditNote] = useState("");
   const { createDiary, getDiaries } = useSelector((state) => state);
   const { diaries } = getDiaries;
-  const { time } = createDiary;
   console.log(createDiary, "createDiary");
   const editHandler = (id, currNote) => {
     console.log(currNote, "current note");
@@ -23,6 +37,7 @@ const AllNote = () => {
   console.log(edit, "edit");
   const deleteHandler = (id) => {
     dispatch(deleteDiaryAction(id));
+    setEdit(null);
     //i am suppose to call a function here to make single id disappear
   };
   const updateHandler = (e) => {
@@ -34,34 +49,11 @@ const AllNote = () => {
       console.log(editNote, "updated");
     }
   };
-  let date = new Date();
-
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-
-  // Check whether AM or PM
-  let newformat = hours >= 12 ? "PM" : "AM";
-
-  // Find current hour in AM-PM Format
-  hours = hours % 12;
-
-  // To display "0" as "12"
-  hours = hours ? hours : 12;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  let answer = hours + ":" + minutes + " " + newformat;
-  console.log(hours + ":" + minutes + " " + newformat);
-
-  const timee = new Date();
-  const showTime = ` ${timee.getHours()} : ${timee.getMinutes()} : ${timee.getSeconds()}`;
-
-  const dateDay = [timee.getDate(), timee.getDay(), timee.getFullYear()].join(
-    "/"
-  );
   useEffect(
     (id) => {
       dispatch(getDiariesAction());
       dispatch(updateDiaryAction(edit, editNote));
-      deleteDiaryAction(id);
+      dispatch(deleteDiaryAction(id));
     },
     [dispatch, edit, editNote, createDiary]
   );
@@ -76,8 +68,8 @@ const AllNote = () => {
             >
               <div id={styles.paste}>
                 <div id={styles.mary}>
-                  <h3>{time} </h3>
-                  <h6> {dateDay} </h6>
+                  <h3>{note.time} </h3>
+                  <h6> {note.date} </h6>
                 </div>
 
                 <div>
@@ -126,7 +118,59 @@ const AllNote = () => {
                   )}
                 </div>
                 <div>
-                  <h2>readmore....</h2>
+                  <h2
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setOpen(!open)}
+                  >
+                    readmore...
+                  </h2>
+                  {open && (
+                    <Overall>
+                      <div
+                        style={{
+                          width: "800px",
+                          height: "600px",
+                          borderRadius: "50px 50px 50px 50px",
+                          backgroundColor: "#ff5102",
+                          color: "#fff",
+                          padding: "20px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <div>
+                            <h1>Date:{note.time}</h1>
+                            <h3>{note.date}</h3>
+                          </div>
+                          <button
+                            onClick={() => setOpen(false)}
+                            style={{
+                              fontSize: "50px",
+                              font: "bold",
+                              cursor: "pointer",
+                              backgroundColor: "#fff",
+                              border: "none",
+                              color: "#ff5102",
+                              width: "50px",
+                              height: "50px",
+                              borderRadius: "1000%",
+                            }}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: note.desc,
+                          }}
+                        />
+                      </div>
+                    </Overall>
+                  )}
                 </div>
               </div>
             </div>

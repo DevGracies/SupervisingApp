@@ -170,3 +170,48 @@ export const DeleteUserReducer = (
       return state;
   }
 };
+// reducers.js
+
+const initialState = {
+  users: [], // initial state loaded from db.json
+};
+
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "DIARYENTRY":
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.id === action.payload.userId
+            ? { ...user, diaries: [...user.diaries, action.payload.diaryEntry] }
+            : user
+        ),
+      };
+    // other cases for different actions
+    default:
+      return state;
+  }
+};
+
+// export default rootReducer;
+// DiaryEntryForm.js
+//
+// import { useDispatch } from 'react-redux';
+// import { addDiaryEntry } from './actions';
+//
+// const DiaryEntryForm = ({ userId }) => {
+// const dispatch = useDispatch();
+//
+// const handleAddDiaryEntry = (diaryEntry) => {
+// dispatch(addDiaryEntry(userId, diaryEntry));
+// };
+//
+// ... your component code
+//
+// return (
+//  ... your form UI with a button or submit event that triggers handleAddDiaryEntry
+// );
+// };
+//
+// export default DiaryEntryForm;
+//

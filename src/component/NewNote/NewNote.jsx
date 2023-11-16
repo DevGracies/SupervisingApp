@@ -4,7 +4,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { createDiaryAction } from "../../redux/actions";
+import { createDiaryAction, userDaries } from "../../redux/actions";
 
 const Top = styled.section`
   background-color: #fff;
@@ -58,7 +58,7 @@ const Overall = styled.div`
   backdrop-filter: blur(10px);
 `;
 
-const NewNote = () => {
+const NewNote = ({ userId }) => {
   const [value, setValue] = useState("");
   const [note, setNote] = useState();
   const dispatch = useDispatch();
@@ -73,6 +73,11 @@ const NewNote = () => {
     setValue("");
     setNote(!note);
   };
+
+  const handleAddDiaryEntry = (diaryEntry) => {
+    dispatch(userDaries(userId, diaryEntry));
+  };
+
   var toolbarOptions = [
     [{ header: 1 }, { header: 2 }],
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -94,7 +99,7 @@ const NewNote = () => {
         alignItems: "center",
       }}
     >
-      <Top>
+      <Top onSubmit={handleAddDiaryEntry}>
         <h2>{user.email.slice(0, 6)}</h2>
         <Note onClick={() => setNote(!note)}>
           Write <FaPlus />

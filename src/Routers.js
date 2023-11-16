@@ -10,9 +10,9 @@ const Routers = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="*" element={<Error />} />
-        <Route element={<ProtectedRouters />}>
-          <Route path="/join" element={<Join />} />
-        </Route>
+        {/* <Route element={<ProtectedRouters />}> */}
+        <Route path="/join" element={<Join />} />
+        {/* </Route> */}
       </Routes>
     </div>
   );

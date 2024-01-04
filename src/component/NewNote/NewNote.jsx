@@ -6,59 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { createDiaryAction, userDaries } from "../../redux/actions";
 
-const Top = styled.section`
-  background-color: #fff;
-  height: 90px;
-  align-items: center;
-  width: 390px;
-  display: flex;
-  border-radius: 20px;
-  color: #ff5102;
-  padding: 20px;
-`;
-
-const Note = styled.button`
-  cursor: pointer;
-  background-color: #ff5102;
-  color: #ffff;
-  border: none;
-  font-size: 30px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-  align-items: center;
-  width: 100px;
-  height: 50px;
-  margin: 5px;
-`;
-const Fold = styled.form`
-  background-color: #ffff;
-  border-radius: 15px;
-  width: 80vh;
-  height: 80vh;
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-`;
-const Task = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const Overall = styled.div`
-  width: 100%;
-  top: 0;
-  buttom: 0;
-  left: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  backdrop-filter: blur(10px);
-`;
-
-const NewNote = ({ userId }) => {
+const NewNote = () => {
   const [value, setValue] = useState("");
   const [note, setNote] = useState();
   const dispatch = useDispatch();
@@ -74,10 +22,10 @@ const NewNote = ({ userId }) => {
     setNote(!note);
   };
 
-  const handleAddDiaryEntry = (diaryEntry) => {
-    dispatch(userDaries(userId, diaryEntry));
-  };
-
+  // const handleAddDiaryEntry = (diaryEntry) => {
+  // dispatch(userDaries(userId, diaryEntry));
+  // };
+  //
   var toolbarOptions = [
     [{ header: 1 }, { header: 2 }],
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -99,8 +47,8 @@ const NewNote = ({ userId }) => {
         alignItems: "center",
       }}
     >
-      <Top onSubmit={handleAddDiaryEntry}>
-        <h2>{user.email.slice(0, 6)}</h2>
+      <Top onSubmit={submitHandler}>
+        {/* <h2>{user.email.slice(0, 6)}</h2> */}
         <Note onClick={() => setNote(!note)}>
           Write <FaPlus />
         </Note>
@@ -167,3 +115,55 @@ const NewNote = ({ userId }) => {
 
 export default NewNote;
 //npm install react-quill --save
+
+const Top = styled.section`
+  background-color: #fff;
+  height: 90px;
+  align-items: center;
+  width: 390px;
+  display: flex;
+  border-radius: 20px;
+  color: #ff5102;
+  padding: 20px;
+`;
+
+const Note = styled.button`
+  cursor: pointer;
+  background-color: #ff5102;
+  color: #ffff;
+  border: none;
+  font-size: 30px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  margin: 5px;
+`;
+const Fold = styled.form`
+  background-color: #ffff;
+  border-radius: 15px;
+  width: 80vh;
+  height: 80vh;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+`;
+const Task = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const Overall = styled.div`
+  width: 100%;
+  top: 0;
+  buttom: 0;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  backdrop-filter: blur(10px);
+`;

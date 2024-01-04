@@ -1,17 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import style from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUserAction } from "../../redux/actions";
-const Top = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ff5102;
-  height: 100px;
-  padding: 4px;
-`;
 
 function Header() {
   const navigate = useNavigate();
@@ -27,20 +18,48 @@ function Header() {
   useEffect(() => {
     console.log(user, "delete user");
   }, [user]);
-  return (
-    <Top>
-      <h2 className={style.note}>Diary</h2>
-      <div>
-        <Link to="/">
-          <button className={style.account}>Logout</button>
-        </Link>
 
-        <button className={style.account} onClick={() => deleteAccount(user)}>
-          Delete Account
-        </button>
-      </div>
-    </Top>
+  const logout = () => {
+    console.log("logout");
+  };
+  return (
+    <NavigationContainer>
+      <Logo>Diary</Logo>
+      <NavigationItems>
+        <NavigationItem onClick={logout}>Logout</NavigationItem>
+        <NavigationItem onClick={deleteAccount}>Delete Account</NavigationItem>
+      </NavigationItems>
+    </NavigationContainer>
   );
 }
 
 export default Header;
+
+const NavigationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ff5102;
+  color: #fff;
+`;
+
+const Logo = styled.div`
+  font-size: 2rem;
+  font-weight: bold;
+`;
+
+const NavigationItems = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NavigationItem = styled.div`
+  margin-left: 20px;
+  cursor: pointer;
+  color: #fff;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;

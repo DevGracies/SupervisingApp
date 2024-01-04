@@ -1,19 +1,26 @@
+// Footer.js
+
 import React from "react";
 import styled from "styled-components";
 
-const Copy = styled.section`
-  background-color: #ff5102;
-  color: #ffff;
-  margin: 0;
-  padding: 0;
+const FooterContainer = styled.footer`
   text-align: center;
-  height: 90px;
+  padding: 10px;
+  background-color: #ff5102;
+  border-top: 1px solid #ddd;
 `;
+
+const CopyrightText = styled.p`
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+`;
+
 const Footer = () => {
   return (
-    <Copy>
-      <h2>&copy;Olori 2023 </h2>
-    </Copy>
+    <FooterContainer>
+      <CopyrightText>©Olori 2023</CopyrightText>
+    </FooterContainer>
   );
 };
 

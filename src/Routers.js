@@ -4,12 +4,14 @@ import { Link, Route, Routes } from "react-router-dom";
 import Join from "./Screen/Join";
 import ProtectedRouters from "./component/LoginPage/ProtectedRouters";
 import Error from "./Screen/Error";
+import LoginForm from "./component/SignPage/SignPage";
 const Routers = () => {
   return (
     <div>
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="*" element={<Error />} />
+        <Route path="/sign" element={<LoginForm />} />
         {/* <Route element={<ProtectedRouters />}> */}
         <Route path="/join" element={<Join />} />
         {/* </Route> */}

@@ -4,6 +4,7 @@ import {
   DeleteUserReducer,
   GetUserReducer,
   GetUsersReducer,
+  LoginUserReducer,
   buyCake,
   createDiaryReducer,
   createUserReducer,
@@ -16,6 +17,7 @@ import todoReducer from "./reducers/jornal";
 export const reducers = combineReducers({
   cakes: buyCake,
   createUser: createUserReducer,
+  loginUser: LoginUserReducer,
   getUser: GetUserReducer,
   getUsers: GetUsersReducer,
   todos: todoReducer,

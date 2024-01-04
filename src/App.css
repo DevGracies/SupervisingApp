@@ -1,8 +1,9 @@
 body{
     margin:0;
     padding:0;
-  background-color: #ff5102;
+    overflow: hidden;
 }
 .ql-editor{
-    min-height: 400px;
+  /* height: 300px; */
+    min-height: 300px;
 }

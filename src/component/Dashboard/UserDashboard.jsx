@@ -10,9 +10,10 @@ function UserDashboard() {
         style={{
           justifyContent: "center",
           display: " flex",
+          width: "50vw",
+          minWidth: " 100vw",
           alignItems: "center",
-          width: "100%",
-          height: "100%",
+          overflow: "hidden",
         }}
       >
         <div
@@ -22,7 +23,6 @@ function UserDashboard() {
             margin: "10px",
             backgroundColor: "white",
             borderRadius: "10px",
-            width: "max-content",
             padding: "5px",
           }}
         >
@@ -34,7 +34,7 @@ function UserDashboard() {
           </h1>
         </div>
       </div>
-      <div style={{ height: " max-content", minHeight: "500px" }}>
+      <div style={{ height: " max-content", minHeight: "55vh" }}>
         <AllNote />
       </div>
     </div>

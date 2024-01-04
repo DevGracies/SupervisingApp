@@ -90,7 +90,7 @@ const AllNote = () => {
                     <div>
                       <h4
                         dangerouslySetInnerHTML={{
-                          __html: note.desc.slice(0, 20),
+                          __html: note.desc,
                         }}
                       />
                       <div

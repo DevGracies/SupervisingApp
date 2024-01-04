@@ -14,6 +14,10 @@ import {
   GET_USER_SUCCESS,
   GET_USER_RESET,
   GET_USER_ERROR,
+  LOGIN_USER_REQUEST,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_RESET,
+  LOGIN_USER_ERROR,
 } from "../constants";
 
 export const createUserReducer = (
@@ -46,6 +50,50 @@ export const createUserReducer = (
         loading: false,
         success: false,
         error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo "))
+  : null;
+export const LoginUserReducer = (
+  state = {
+    users: userInfoFromStorage,
+    loadings: false,
+    success: false,
+    errors: null,
+  },
+  action
+) => {
+  switch (action.type) {
+    case LOGIN_USER_REQUEST:
+      return {
+        ...state,
+        loadings: true,
+      };
+    case LOGIN_USER_SUCCESS:
+      return {
+        ...state,
+        loadings: false,
+        success: true,
+        users: action.payload,
+      };
+    case LOGIN_USER_RESET:
+      return {
+        loadings: false,
+        success: false,
+        users: null,
+        errors: null,
+      };
+    case LOGIN_USER_ERROR:
+      return {
+        ...state,
+        loadings: false,
+        success: false,
+        errors: action.payload,
       };
     default:
       return state;
@@ -176,7 +224,7 @@ const initialState = {
   users: [], // initial state loaded from db.json
 };
 
-const rootReducer = (state = initialState, action) => {
+export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "DIARYENTRY":
       return {

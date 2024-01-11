@@ -61,8 +61,8 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   : null;
 export const LoginUserReducer = (
   state = {
-    users: userInfoFromStorage,
-    loadings: false,
+    user: userInfoFromStorage,
+    loading: false,
     success: false,
     errors: null,
   },
@@ -72,26 +72,26 @@ export const LoginUserReducer = (
     case LOGIN_USER_REQUEST:
       return {
         ...state,
-        loadings: true,
+        loading: true,
       };
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
-        loadings: false,
+        loading: false,
         success: true,
-        users: action.payload,
+        user: action.payload,
       };
     case LOGIN_USER_RESET:
       return {
-        loadings: false,
+        loading: false,
         success: false,
-        users: null,
+        user: null,
         errors: null,
       };
     case LOGIN_USER_ERROR:
       return {
         ...state,
-        loadings: false,
+        loading: false,
         success: false,
         errors: action.payload,
       };
@@ -103,7 +103,7 @@ export const LoginUserReducer = (
 export const GetUsersReducer = (
   state = {
     users: [],
-    loadings: false,
+    loading: false,
     success: false,
     errors: null,
   },
@@ -113,18 +113,18 @@ export const GetUsersReducer = (
     case GET_USERS_REQUEST:
       return {
         ...state,
-        loadings: true,
+        loading: true,
       };
     case GET_USERS_SUCCESS:
       return {
         ...state,
-        loadings: false,
+        loading: false,
         success: true,
         users: action.payload,
       };
     case GET_USERS_RESET:
       return {
-        loadings: false,
+        loading: false,
         success: false,
         users: null,
         errors: null,
@@ -132,7 +132,7 @@ export const GetUsersReducer = (
     case GET_USERS_ERROR:
       return {
         ...state,
-        loadings: false,
+        loading: false,
         success: false,
         errors: action.payload,
       };
@@ -144,7 +144,7 @@ export const GetUsersReducer = (
 export const GetUserReducer = (
   state = {
     user: null,
-    loadings: false,
+    loading: false,
     success: false,
     errors: null,
   },
@@ -154,7 +154,7 @@ export const GetUserReducer = (
     case GET_USER_REQUEST:
       return {
         ...state,
-        loadings: true,
+        loading: true,
       };
     case GET_USER_SUCCESS:
       const { email, password } = action.payload;
@@ -168,21 +168,21 @@ export const GetUserReducer = (
       console.log(user);
       return {
         ...state,
-        loadings: false,
+        loading: false,
         success: true,
         user: user ? user : null,
       };
     case GET_USER_RESET:
       return {
-        loadings: false,
+        loading: false,
         success: false,
-        users: null,
+        user: null,
         errors: null,
       };
     case GET_USER_ERROR:
       return {
         ...state,
-        loadings: false,
+        loading: false,
         success: false,
         errors: action.payload,
       };
@@ -263,3 +263,7 @@ export const rootReducer = (state = initialState, action) => {
 //
 // export default DiaryEntryForm;
 //
+// git add Backend
+// git commit -m "Commit message for Backend changes"
+// git add Frontend
+// git commit -m "Commit message for Frontend changes"

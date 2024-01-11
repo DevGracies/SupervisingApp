@@ -23,14 +23,9 @@ import axios from "axios";
 const backend_base_url = "http://localhost:9000";
 
 export const createUserAction = (posts) => async (dispatch, state) => {
-  const {
-    LoggedInUser: { user },
-  } = state();
-  console.log(user, "this is from the state");
   const config = {
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${user.token}`,
     },
   };
   try {
@@ -38,13 +33,13 @@ export const createUserAction = (posts) => async (dispatch, state) => {
     dispatch({
       type: CREATE_USER_REQUEST,
     });
-
+    console.log(posts, "posts");
     // throw new Error("An error occured")
     //make a call
     const { data } = await axios.post(
       `${backend_base_url}/users`,
       {
-        posts,
+        ...posts,
       },
       config
     );
@@ -70,13 +65,9 @@ export const createUserAction = (posts) => async (dispatch, state) => {
 };
 
 export const loginUserAction = (email, password) => async (dispatch, state) => {
-  const {
-    LoggedInUser: { user },
-  } = state();
   const config = {
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${user.token}`,
     },
   };
   try {
@@ -95,8 +86,10 @@ export const loginUserAction = (email, password) => async (dispatch, state) => {
       },
       config
     );
+
     //if we get here, then request is a sucess case
     const userInfo = { ...data.payload, token: data.token };
+    console.log(userInfo, "data");
     dispatch({
       type: LOGIN_USER_SUCCESS,
       payload: userInfo,

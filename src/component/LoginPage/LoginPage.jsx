@@ -38,10 +38,10 @@ function LoginPage() {
       setPhoneNumber(value);
     }
   }
-
+  console.log(user, "user");
   useEffect(() => {
-    if (success) {
-      toast.success(`${user} Welcome back`);
+    if (isLogIn && success) {
+      toast.success(`${user.firstName} Welcome back`);
       setTimeout(() => {
         navigate("/Join");
       }, 5000);
